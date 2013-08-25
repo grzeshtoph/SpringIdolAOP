@@ -32,7 +32,7 @@ public class JugglerTest {
 
     @Test
     public void hashCodeTest() {
-        Juggler duke1 = new Juggler("duke@gmail.com", 15);
+        Juggler duke1 = new Juggler();
         assertFalse(duke.hashCode() == duke1.hashCode());
     }
 
@@ -47,7 +47,9 @@ public class JugglerTest {
         assertFalse(duke.equals(null));
         assertFalse(duke.equals(new Object()));
 
-        Juggler duke1 = new Juggler("duke@gmail.com");
+        Juggler duke1 = new Juggler();
+        assertFalse(duke.equals(duke1));
+        duke1.setEmail("duke@gmail.com");
         assertFalse(duke.equals(duke1));
         duke1.setBeanBags(20);
         assertFalse(duke.equals(duke1));

@@ -12,15 +12,6 @@ public class Juggler extends AbstractContestant {
     private static final Logger LOG = LoggerFactory.getLogger(Juggler.class);
     private int beanBags = 3;
 
-    public Juggler(String email, int beanBags) {
-        super(email);
-        this.beanBags = beanBags;
-    }
-
-    public Juggler(String email) {
-        super(email);
-    }
-
     public int getBeanBags() {
         return beanBags;
     }

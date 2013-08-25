@@ -13,10 +13,6 @@ public abstract class AbstractContestant implements Performer {
     private String performerName;
     private String email;
 
-    protected AbstractContestant(String email) {
-        this.email = email;
-    }
-
     @Override
     public final void perform() throws PerformanceException {
         LOG.info("-----");
