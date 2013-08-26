@@ -34,10 +34,14 @@ public class TicketTest {
         assertFalse(ticketExtra == ticketNormal);
         assertTrue(ticketExtra.getTicketNo() > 0);
         assertTrue(ticketNormal.getTicketNo() > 0);
-        Ticket ticket3 = new Ticket(false, ticketNormal.getTicketNo());
+        Ticket ticket3 = new Ticket();
+        ticket3.setExtraPrice(false);
+        ticket3.setTicketNo(ticketNormal.getTicketNo());
         ticket3.init();
         assertTrue(ticket3.getTicketNo() > 0);
-        ticket3 = new Ticket(true, ticketNormal.getTicketNo());
+        ticket3 = new Ticket();
+        ticket3.setExtraPrice(true);
+        ticket3.setTicketNo(ticketNormal.getTicketNo());
         ticket3.init();
     }
 }

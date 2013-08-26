@@ -14,12 +14,12 @@ public class Ticket {
     @Value("#{theStage.stageName matches '.*USA.*'}")
     private boolean extraPrice;
 
-    public Ticket(boolean extraPrice, int ticketNo) {
-        this.extraPrice = extraPrice;
+    public void setTicketNo(int ticketNo) {
         this.ticketNo = ticketNo;
     }
 
-    public Ticket() {
+    public void setExtraPrice(boolean extraPrice) {
+        this.extraPrice = extraPrice;
     }
 
     public int getTicketNo() {

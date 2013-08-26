@@ -11,11 +11,9 @@
 
     <context:component-scan base-package="com.springinaction.springidol"/>
 
-    <bean id="duke" class="com.springinaction.springidol.performers.Juggler"
-          p:email="duke@gmail.com" p:beanBags="15"/>
+    <bean id="duke" class="com.springinaction.springidol.performers.Juggler"/>
 
-    <bean id="theStage" class="com.springinaction.springidol.Stage" factory-method="getInstance"
-          p:stageName="Carnegie Hall USA Special"/>
+    <bean id="theStage" class="com.springinaction.springidol.Stage" factory-method="getInstance"/>
 
     <bean id="ticketNormal" class="com.springinaction.springidol.Ticket" scope="prototype"/>
 
@@ -23,11 +21,14 @@
 
     <bean id="audience" class="com.springinaction.springidol.Audience"/>
 
-    <!--<aop:config>-->
-        <!--<aop:aspect id="audienceAspect" ref="audience">-->
-            <!--<aop:pointcut id="perform"-->
-                          <!--expression="execution(* com.springinaction.springidol.performers.Performer.perform(..))" />-->
-            <!--<aop:before method="takeSeats" pointcut-ref="perform" />-->
-        <!--</aop:aspect>-->
-    <!--</aop:config>-->
+    <aop:config>
+        <aop:aspect id="audienceAspect" ref="audience">
+            <aop:pointcut id="performance"
+                          expression="execution(* com.springinaction.springidol..*.Performer.perform(..))"/>
+            <aop:before method="takeSeats" pointcut-ref="performance"/>
+            <aop:before method="turnOffCellPhones" pointcut-ref="performance"/>
+            <aop:after-returning method="applaud" pointcut-ref="performance"/>
+            <aop:after-throwing method="demandRefund" pointcut-ref="performance"/>
+        </aop:aspect>
+    </aop:config>
 </beans>
