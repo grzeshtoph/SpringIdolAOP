@@ -5,10 +5,12 @@ import com.springinaction.springidol.PerformanceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 /**
  * Juggler performer.
  */
+@Component("duke")
 public class Juggler implements Performer {
     private static final Logger LOG = LoggerFactory.getLogger(Juggler.class);
     @Value("#{3 * 5}")
@@ -48,6 +50,12 @@ public class Juggler implements Performer {
         LOG.info("Performance by '{}'", performerName);
         LOG.info("Email: {}", email);
         LOG.info("JUGGLING {} BEANBAGS", beanBags);
+        try {
+            Thread.sleep(1234);
+        } catch (InterruptedException e) {
+            LOG.error("Performance interrupted: {}", e.getMessage());
+            throw new PerformanceException(e.getMessage());
+        }
     }
 
     @Override

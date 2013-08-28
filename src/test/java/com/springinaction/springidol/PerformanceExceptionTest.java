@@ -12,7 +12,7 @@ import static junit.framework.Assert.assertTrue;
 public class PerformanceExceptionTest {
     @Test
     public void createTest() {
-        PerformanceException pe = new PerformanceException();
-        assertTrue(Strings.isNullOrEmpty(pe.getMessage()));
+        PerformanceException pe = new PerformanceException("test");
+        assertEquals("test", pe.getMessage());
     }
 }
