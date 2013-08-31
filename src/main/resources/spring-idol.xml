@@ -13,11 +13,19 @@
 
     <context:component-scan base-package="com.springinaction.springidol"/>
 
+    <aop:aspectj-autoproxy/>
+
     <util:properties id="awardFor">
         <prop key="juggler">#{T(com.springinaction.springidol.performers.Contestant).AWARD_FOR_JUGGLER}</prop>
         <prop key="faultyJuggler">#{T(com.springinaction.springidol.performers.Contestant).AWARD_FOR_FAULTY_JUGGLER}
         </prop>
     </util:properties>
+
+    <util:list id="criticismPool">
+        <value>I'm not being rude, but that was OK.</value>
+        <value>You are the least talented person in this show.</value>
+        <value>Do everyone a favor and keep your day job.</value>
+    </util:list>
 
     <bean id="theStage" class="com.springinaction.springidol.Stage" factory-method="getInstance"/>
 
@@ -31,17 +39,9 @@
     <bean id="faultyJugglerContestant" class="com.springinaction.springidol.performers.GraciousContestant"
           p:award="#{awardFor['faultyJuggler']}"/>
 
-    <aop:config>
-        <aop:aspect id="audienceAspect" ref="audience">
-            <aop:pointcut id="performance"
-                          expression="execution(* com.springinaction.springidol..*.Performer.perform(..))"/>
-            <aop:before method="takeSeats" pointcut-ref="performance"/>
-            <aop:before method="turnOffCellPhones" pointcut-ref="performance"/>
-            <aop:after-returning method="applaud" pointcut-ref="performance"/>
-            <aop:after-throwing method="demandRefund" pointcut-ref="performance"/>
-            <aop:around method="watchPerformance" pointcut-ref="performance"/>
-        </aop:aspect>
+    <!--<bean id="judge" class="com.springinaction.springidol.critics.JudgeAspect" factory-method="aspectOf"></bean>-->
 
+    <aop:config>
         <aop:aspect id="mindReaderAspect" ref="magician">
             <aop:pointcut id="thinking"
                           expression="execution(* com.springinaction.springidol..*.Thinker.thinkOf(..))

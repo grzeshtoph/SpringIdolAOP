@@ -20,11 +20,23 @@ import static org.junit.Assert.assertNotNull;
 public class ContestantTest {
     @Autowired
     private Properties awardFor;
+    @Autowired
+    private Contestant duke;
+    @Autowired
+    private Contestant faultyDuke;
 
     @Test
     public void awardForTest() {
         assertNotNull(awardFor);
         assertEquals(AWARD_FOR_JUGGLER, awardFor.getProperty("juggler"));
         assertEquals(AWARD_FOR_FAULTY_JUGGLER, awardFor.getProperty("faultyJuggler"));
+    }
+
+    @Test
+    public void contestantTest(){
+        assertNotNull(duke);
+        assertNotNull(faultyDuke);
+        duke.receiveAward();
+        faultyDuke.receiveAward();
     }
 }

@@ -1,5 +1,6 @@
 package com.springinaction.springidol;
 
+import com.springinaction.springidol.performers.Coder;
 import com.springinaction.springidol.performers.Contestant;
 import com.springinaction.springidol.performers.Magician;
 import com.springinaction.springidol.performers.Performer;
@@ -28,9 +29,6 @@ public class App {
         Thinker volunteer = (Thinker) ctx.getBean("volunteer");
         volunteer.thinkOf("my secret thoughts");
 
-        Magician magician = (Magician) ctx.getBean("magician");
-        LOG.info(magician.getThoughts());
-
         Performer faultyDuke = (Performer) ctx.getBean("faultyDuke");
         try {
             faultyDuke.perform();
@@ -43,5 +41,11 @@ public class App {
 
         contestant = (Contestant) faultyDuke;
         contestant.receiveAward();
+
+        Coder coder = (Coder) duke;
+        coder.code();
+
+        coder = (Coder) faultyDuke;
+        coder.code();
     }
 }
